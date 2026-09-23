@@ -8,6 +8,7 @@ const Login = () => {
 
     const [emailId, setEmailid] = useState("shubham@gmail.com")
     const [password, setPassword] = useState("Shubham@123")
+    const [error , setError] = useState("")
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const handleLogin = async () => {
@@ -16,7 +17,10 @@ const Login = () => {
             dispatch(addUser(res.data.data))
             return navigate("/")
         } catch (error) {
-            console.log("ERROR", error.message)
+            if(error.status === 401){
+                setError(error.response.data)
+            }
+            console.log("ERROR", error.response)
         }
     }
     return (
@@ -34,6 +38,7 @@ const Login = () => {
                             <input type="text" id="name" className="input" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                         </fieldset>
                     </div>
+                    <p className="text-red-500">{error}</p>
                     <div className="card-actions justify-center">
                         <button className="btn btn-primary" onClick={handleLogin}>Login</button>
                     </div>
