@@ -1,5 +1,4 @@
 const UserCard = ({ user }) => {
-    console.log(user)
     const { firstName, lastName, age, gender, photoUrl, about } = user
     return (
         <div className="justify-center">
