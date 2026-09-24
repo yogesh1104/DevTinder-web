@@ -5,7 +5,7 @@ import axios from "axios"
 import { useDispatch } from "react-redux"
 import { addUser } from "../utils/userSlice"
 
-const EditProfile = ({ user }) => {
+const EditProfile = ({ user , button}) => {
     const [firstName, setFirstName] = useState(user.firstName)
     const [lastName, setLastName] = useState(user.lastName)
     const [photoUrl, setPhotoUrl] = useState(user.photoUrl)
@@ -68,7 +68,7 @@ const EditProfile = ({ user }) => {
                     </div>
                 </div>
             </div>
-            <UserCard user={{ firstName, lastName, age, gender, photoUrl, about }} />
+            <UserCard user={{ firstName, lastName, age, gender, photoUrl, about }} button = {button}/>
             {toast && <div className="toast toast-top toast-center">
                 <div className="alert alert-success">
                     <span>Profile save successfully.</span>
